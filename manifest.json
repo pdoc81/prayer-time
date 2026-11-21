@@ -1,0 +1,40 @@
+{
+  "schemaVersion": 1,
+  "id": "pdoc81.radio-malaysia",
+  "name": "Radio Malaysia",
+  "version": "1.0.0",
+  "author": "pdoc81",
+  "license": "MIT",
+  "description": "Listen to 66 Malaysian radio stations (RTM, Astro, Media Prima and more) from the Omarchy bar, with a colourful audio visualizer.",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Radio Malaysia",
+    "description": "Pick a Malaysian radio station, star favourites, set the volume and watch a bars, wave or spectrogram visualizer.",
+    "category": "Media",
+    "allowMultiple": false,
+    "defaultSection": "right",
+    "defaults": {
+      "showStation": true,
+      "barVisualizer": true
+    },
+    "schema": [
+      {
+        "key": "showStation",
+        "type": "boolean",
+        "label": "Show station name in the bar while playing",
+        "defaultValue": true
+      },
+      {
+        "key": "barVisualizer",
+        "type": "boolean",
+        "label": "Animate the bar icon as a visualizer while playing",
+        "defaultValue": true
+      }
+    ]
+  }
+}

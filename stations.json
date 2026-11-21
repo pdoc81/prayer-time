@@ -1,0 +1,452 @@
+[
+  {
+    "id": "nasional",
+    "group": "RTM Nasional",
+    "name": "Nasional FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/NASIONAL_FM.mp3",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1774266983-1767931009-test-nasional.gif"
+  },
+  {
+    "id": "klasik",
+    "group": "RTM Nasional",
+    "name": "Radio Klasik",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO_KLASIKAAC_SC",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1774262103-1738038234-klasik-latest.png"
+  },
+  {
+    "id": "traxx",
+    "group": "RTM Nasional",
+    "name": "Traxx FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/TRAXX_FMAAC_SC",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1774262337-1767930397-traxx-fm-animated-1ff213ef.gif"
+  },
+  {
+    "id": "aifm",
+    "group": "RTM Nasional",
+    "name": "ai FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/AI_FMAAC_SC",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1774262313-1767931789-ai-fm.gif"
+  },
+  {
+    "id": "minnal",
+    "group": "RTM Nasional",
+    "name": "Minnal FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/MINNAL_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1774262255-1767931393-minnal-fm-animated-7f20c185.gif"
+  },
+  {
+    "id": "asyik",
+    "group": "RTM Nasional",
+    "name": "Asyik FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/ASYIK_FM.mp3",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1777451651-video-1777451173580.gif"
+  },
+  {
+    "id": "redfm",
+    "group": "RTM Nasional",
+    "name": "REDfm",
+    "url": "https://22273.live.streamtheworld.com/RED_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/red-fm.jpg"
+  },
+  {
+    "id": "muzik",
+    "group": "RTM Nasional",
+    "name": "Radio Muzik",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/MUZIKFMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1774262418-1767931822-muzik-fm.gif"
+  },
+  {
+    "id": "bisnes",
+    "group": "RTM Nasional",
+    "name": "Radio Bisnes",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIOBISNESAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1773370246-radio-bisnes.png"
+  },
+  {
+    "id": "perlis",
+    "group": "RTM Negeri",
+    "name": "Perlis FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/PERLIS_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1777428061-mp-video-feel-free-to-ask-for-any-adjustments-ezgifcom-video-to-gif-converter.gif"
+  },
+  {
+    "id": "kedah",
+    "group": "RTM Negeri",
+    "name": "Kedah FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/KEDAH_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1777360970-animated-banner-video-ready1-ezgifcom-video-to-gif-converter.gif"
+  },
+  {
+    "id": "langkawi",
+    "group": "RTM Negeri",
+    "name": "Langkawi FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/LANGKAWI_FM.mp3",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1773302083-1764670068-picture3.png"
+  },
+  {
+    "id": "mutiara",
+    "group": "RTM Negeri",
+    "name": "Mutiara FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/MUTIARA_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1777361481-animated-banner-video-generation-ezgifcom-crop.gif"
+  },
+  {
+    "id": "perak",
+    "group": "RTM Negeri",
+    "name": "Perak FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/PERAK_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1777433482-make-this-banner-animated-ezgifcom-crop.gif"
+  },
+  {
+    "id": "selangor",
+    "group": "RTM Negeri",
+    "name": "Selangor FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/SELANGOR_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/selangor-fm.jpg"
+  },
+  {
+    "id": "klfm",
+    "group": "RTM Negeri",
+    "name": "KL FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/KL_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/kl-fm.jpg"
+  },
+  {
+    "id": "negeri",
+    "group": "RTM Negeri",
+    "name": "Negeri FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/NEGERI_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1776045186-video-generation-request-fulfilled-ezgifcom-video-to-gif-converter.gif"
+  },
+  {
+    "id": "melaka",
+    "group": "RTM Negeri",
+    "name": "Melaka FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/MELAKA_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1777361143-animated-banner-video-ready-ezgifcom-crop.gif"
+  },
+  {
+    "id": "johor",
+    "group": "RTM Negeri",
+    "name": "Johor FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/JOHOR_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/johor-fm.jpg"
+  },
+  {
+    "id": "pahang",
+    "group": "RTM Negeri",
+    "name": "Pahang FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/PAHANG_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1777428541-b-c-b-c-e-e-c-bmp-video-ezgifcom-video-to-gif-converter.gif"
+  },
+  {
+    "id": "terengganu",
+    "group": "RTM Negeri",
+    "name": "Terengganu FM",
+    "url": "https://22243.live.streamtheworld.com/TERENGGANU_FMAAC_SC",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/terengganu-fm.jpg"
+  },
+  {
+    "id": "kelantan",
+    "group": "RTM Negeri",
+    "name": "Kelantan FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/KELANTAN_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/kelantan-fm.jpg"
+  },
+  {
+    "id": "sarawak",
+    "group": "RTM Negeri",
+    "name": "Sarawak FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/SARAWAK_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/sarawak-fm.jpg"
+  },
+  {
+    "id": "waiiban",
+    "group": "RTM Negeri",
+    "name": "WAI FM Iban",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/WAI_FM_IBAN.mp3",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/wai-segulai-sejalai.jpg"
+  },
+  {
+    "id": "waibidayuh",
+    "group": "RTM Negeri",
+    "name": "WAI FM Bidayuh",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/WAI_FM_BK.mp3",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1774262557-1764668235-wai-gerak-bisamah.png"
+  },
+  {
+    "id": "miri",
+    "group": "RTM Negeri",
+    "name": "Miri FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/MIRI_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1775809661-ezgifcom-video-to-gif-converter.gif"
+  },
+  {
+    "id": "bintulu",
+    "group": "RTM Negeri",
+    "name": "Bintulu FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/BINTULU_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/bintulu-fm.jpg"
+  },
+  {
+    "id": "sabah",
+    "group": "RTM Negeri",
+    "name": "Sabah FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/SABAH_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/sabah-fm.jpg"
+  },
+  {
+    "id": "sabahv",
+    "group": "RTM Negeri",
+    "name": "Sabah VFM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/SABAH_VFMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/sabah-v-fm.jpg"
+  },
+  {
+    "id": "keningau",
+    "group": "RTM Negeri",
+    "name": "Keningau FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/KENINGAU_FM.mp3",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1776045075-animated-banner-video-generation-ezgifcom-video-to-gif-converter.gif"
+  },
+  {
+    "id": "tawau",
+    "group": "RTM Negeri",
+    "name": "Tawau FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/TAWAU_FM.mp3",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/tawau-fm.jpg"
+  },
+  {
+    "id": "labuan",
+    "group": "RTM Negeri",
+    "name": "Labuan FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/LABUAN_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/labuan-fm.jpg"
+  },
+  {
+    "id": "sriaman",
+    "group": "RTM Negeri",
+    "name": "Sri Aman FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/SRIAMAN_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1775810594-video-1775810489848-ezgifcom-video-to-gif-converter.gif"
+  },
+  {
+    "id": "sibu",
+    "group": "RTM Negeri",
+    "name": "Sibu FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/SIBU_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/sibu-fm.jpg"
+  },
+  {
+    "id": "limbang",
+    "group": "RTM Negeri",
+    "name": "Limbang FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/LIMBANGAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/limbang-fm.jpg"
+  },
+  {
+    "id": "gemaborneo",
+    "group": "RTM Negeri",
+    "name": "Radio Gema Borneo",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/RADIO_BORNEOAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/1791258424-radio-gema-borneo.png"
+  },
+  {
+    "id": "sandakan",
+    "group": "RTM Negeri",
+    "name": "Sandakan FM",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/SANDAKAN_FMAAC.aac",
+    "logoUrl": "https://radio.rtm.gov.my/storage/stations/sandakan-fm.jpg"
+  },
+  {
+    "id": "hitz",
+    "group": "Astro",
+    "name": "HITZ",
+    "url": "https://stream.rcs.revma.com/488kt4sbv4uvv",
+    "logoUrl": "https://assets.astroaudio.com.my/brands_syok/media/uploads/icons/2026-02/hitz.png"
+  },
+  {
+    "id": "lite",
+    "group": "Astro",
+    "name": "LITE",
+    "url": "https://stream.rcs.revma.com/bn4ex8sbv4uvv",
+    "logoUrl": "https://assets.astroaudio.com.my/brands_syok/media/uploads/icons/2026-02/lite-favicon.png"
+  },
+  {
+    "id": "mix",
+    "group": "Astro",
+    "name": "MIX",
+    "url": "https://stream.rcs.revma.com/v5pq3htbv4uvv/hls.m3u8",
+    "logoUrl": "https://assets.astroaudio.com.my/brands_syok/media/uploads/icons/2026-02/mix-favicon.png"
+  },
+  {
+    "id": "myfm",
+    "group": "Astro",
+    "name": "MY FM",
+    "url": "https://stream.rcs.revma.com/hc3unrtbv4uvv/hls.m3u8"
+  },
+  {
+    "id": "melody",
+    "group": "Astro",
+    "name": "Melody",
+    "url": "https://stream.rcs.revma.com/2u1n6dtbv4uvv/hls.m3u8",
+    "logoUrl": "https://assets.astroaudio.com.my/brands_syok/media/uploads/icons/2026-04/favicon-32x32%20%281%29.png"
+  },
+  {
+    "id": "raaga",
+    "group": "Astro",
+    "name": "Raaga",
+    "url": "https://n06.rcs.revma.com/1ut6qwtbv4uvv",
+    "logoUrl": "https://assets.astroaudio.com.my/brands_syok/media/uploads/icons/2026-02/raaga-favicon.png"
+  },
+  {
+    "id": "sinar",
+    "group": "Astro",
+    "name": "Sinar",
+    "url": "https://stream.rcs.revma.com/azatk0tbv4uvv",
+    "logoUrl": "https://assets.astroaudio.com.my/brands_syok/media/uploads/icons/2026-03/sinar.png"
+  },
+  {
+    "id": "zayan",
+    "group": "Astro",
+    "name": "Zayan",
+    "url": "https://stream.rcs.revma.com/7ww2a4tbv4uvv",
+    "logoUrl": "https://assets.astroaudio.com.my/brands_syok/media/uploads/icons/2026-03/zayan-1.png"
+  },
+  {
+    "id": "goxuan",
+    "group": "Astro",
+    "name": "goXuan",
+    "url": "https://stream.rcs.revma.com/xt9nhzsbv4uvv",
+    "logoUrl": "https://media2.fishtank.my/app_themes/goxuan/assets/images/landscape_goxuan.png"
+  },
+  {
+    "id": "rakita",
+    "group": "Astro",
+    "name": "Rakita",
+    "url": "https://playerservices.streamtheworld.com/api/livestream-redirect/RAKITAAAC.aac",
+    "logoUrl": "https://rakita.my/wp-content/uploads/2026/07/favicon-m.webp"
+  },
+  {
+    "id": "hotfm",
+    "group": "Media Prima",
+    "name": "Hot FM",
+    "url": "https://stream.rcs.revma.com/drakdf8mtd3vv/hls.m3u8",
+    "logoUrl": "https://assets.hotfm.audio/2022/03/Adtt8A6P-cropped-siteicon_512x512-01-180x180.jpg"
+  },
+  {
+    "id": "flyfm",
+    "group": "Media Prima",
+    "name": "Fly FM",
+    "url": "https://stream.rcs.revma.com/q17aka9mtd3vv",
+    "logoUrl": "https://assets.flyfm.audio/2022/03/cropped-siteicon_512x512-03-180x180.jpg"
+  },
+  {
+    "id": "koolfm",
+    "group": "Media Prima",
+    "name": "Kool FM",
+    "url": "https://stream.rcs.revma.com/3930238mtd3vv/hls.m3u8",
+    "logoUrl": "https://assets.koolfm.audio/2025/10/cropped-koolfm-favicon-180x180.jpg"
+  },
+  {
+    "id": "bfm",
+    "group": "Lain-lain",
+    "name": "BFM 89.9",
+    "url": "https://22253.live.streamtheworld.com/BFM_SC",
+    "logoUrl": "https://www.bfm.my/apple-icon.png"
+  },
+  {
+    "id": "988",
+    "group": "Lain-lain",
+    "name": "988 FM",
+    "url": "https://28103.live.streamtheworld.com/988_FMAAC.aac",
+    "logoUrl": "https://cdn-prod-wp.988.com.my/wp-content/uploads/2020/05/15205434/cropped-Artboard-2.png"
+  },
+  {
+    "id": "ikim",
+    "group": "Lain-lain",
+    "name": "IKIMfm",
+    "url": "https://stream.rcs.revma.com/kz3pdu9wz2nwv/hls.m3u8",
+    "logoUrl": "https://ikimhub.my/frontend/favicon.png"
+  },
+  {
+    "id": "kpkt",
+    "group": "Lain-lain",
+    "name": "Radio KPKT",
+    "url": "http://listen.kpkt.gov.my:8000/stream"
+  },
+  {
+    "id": "cats",
+    "group": "Lain-lain",
+    "name": "Cats FM",
+    "url": "https://stream.rcs.revma.com/51qe53rv0y3vv.m4a"
+  },
+  {
+    "id": "cityplus",
+    "group": "Lain-lain",
+    "name": "CITYPlus FM",
+    "url": "https://stream.rcs.revma.com/9ykdmcawe1bwv"
+  },
+  {
+    "id": "afocn",
+    "group": "Lain-lain",
+    "name": "AFO Chinese",
+    "url": "https://stream.rcs.revma.com/7x3gv2y4bshvv",
+    "logoUrl": "https://manyfm.com/images/i125300.png"
+  },
+  {
+    "id": "afoen",
+    "group": "Lain-lain",
+    "name": "AFO English",
+    "url": "https://stream.rcs.revma.com/8150ezy4bshvv",
+    "logoUrl": "https://manyfm.com/images/i137564.png"
+  },
+  {
+    "id": "nasheed",
+    "group": "Lain-lain",
+    "name": "Nasheed FM",
+    "url": "http://stereo.nasyidfm.com:8000/"
+  },
+  {
+    "id": "klatekito",
+    "group": "Lain-lain",
+    "name": "Radio Klate Kito",
+    "url": "http://s6.voscast.com:9748/"
+  },
+  {
+    "id": "amboi",
+    "group": "Lain-lain",
+    "name": "Amboi FM",
+    "url": "http://amboifm.iradio.work:8000/stream"
+  },
+  {
+    "id": "ceritera",
+    "group": "Lain-lain",
+    "name": "Ceritera FM",
+    "url": "http://live.ceriterafm.my:8000/"
+  },
+  {
+    "id": "gemersik",
+    "group": "Lain-lain",
+    "name": "Gemersik FM",
+    "url": "http://gemersikfm.iradio.work:8000/;"
+  },
+  {
+    "id": "rosak",
+    "group": "Lain-lain",
+    "name": "Radio Rosak",
+    "url": "https://radiorosak.radioca.st/stream"
+  },
+  {
+    "id": "jazzlounge",
+    "group": "Lain-lain",
+    "name": "Jazz Lounge",
+    "url": "http://eu8.fastcast4u.com:5068/;"
+  },
+  {
+    "id": "slowrock",
+    "group": "Lain-lain",
+    "name": "Slow Rock 90'",
+    "url": "https://stream.zeno.fm/hiut6cwfoneuv"
+  }
+]

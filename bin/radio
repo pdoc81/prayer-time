@@ -1,0 +1,215 @@
+#!/bin/bash
+# Radio Malaysia for Omarchy: plays Malaysian internet radio through mpv.
+# Used by the bar plugin in this repository; it also works on its own.
+#
+#   radio status            print state as key=value lines
+#   radio play <id>         play a station from stations.json
+#   radio stop
+#   radio toggle            stop, or resume the last station
+#   radio volume <0-100>
+#   radio mode <bars|wave|spectrogram>  remember the visualizer mode
+#   radio fav <id>          add or remove a favourite station
+#   radio check [--if-stale N]  probe every station, print id=1|0 lines
+#   radio health            print the last check
+#   radio logos [--force]   download missing station logos, print what is cached
+#
+# Stations live in stations.json next to this script's folder. With mpv-mpris
+# installed (Omarchy default), playback also shows in Omarchy's media controls.
+
+set -u
+
+PLUGIN_DIR=$(cd "$(dirname "$(readlink -f "$0")")/.." && pwd)
+STATIONS="$PLUGIN_DIR/stations.json"
+STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/radio-malaysia"
+STATE_FILE="$STATE_DIR/state"
+LOGO_DIR="${XDG_CACHE_HOME:-$HOME/.cache}/radio-malaysia/logos"
+SOCK="${XDG_RUNTIME_DIR:-/tmp}/radio-malaysia-mpv.sock"
+PID_FILE="$STATE_DIR/pid"
+HEALTH_FILE="$STATE_DIR/health"
+
+last=""
+volume=70
+mode=bars
+favs=""
+
+# One-time move from the pre-release state folder.
+OLD_STATE_DIR="${XDG_STATE_HOME:-$HOME/.local/state}/radio"
+if [[ ! -d $STATE_DIR && -f $OLD_STATE_DIR/state ]]; then
+  mkdir -p "$STATE_DIR"
+  cp "$OLD_STATE_DIR/state" "$STATE_DIR/state"
+  [[ -f $OLD_STATE_DIR/health ]] && cp -p "$OLD_STATE_DIR/health" "$STATE_DIR/health"
+fi
+
+mkdir -p "$STATE_DIR"
+if [[ -f $STATE_FILE ]]; then
+  while IFS='=' read -r k v; do
+    case $k in
+      last) [[ $v =~ ^[a-z0-9]{1,32}$ ]] && last=$v ;;
+      volume) [[ $v =~ ^[0-9]{1,3}$ ]] && ((v <= 100)) && volume=$v ;;
+      mode) [[ $v =~ ^(bars|wave|spectrogram)$ ]] && mode=$v ;;
+      favs) [[ $v =~ ^[a-z0-9,]{0,4000}$ ]] && favs=$v ;;
+    esac
+  done <"$STATE_FILE"
+fi
+
+save() { printf 'last=%s\nvolume=%s\nmode=%s\nfavs=%s\n' "$last" "$volume" "$mode" "$favs" >"$STATE_FILE"; }
+
+running() {
+  local pid
+  [[ -f $PID_FILE ]] || return 1
+  pid=$(<"$PID_FILE")
+  [[ $pid =~ ^[0-9]+$ ]] && kill -0 "$pid" 2>/dev/null && [[ $(cat /proc/"$pid"/comm 2>/dev/null) == mpv ]]
+}
+
+show_health() {
+  [[ -f $HEALTH_FILE ]] || return 0
+  echo "checked=$(stat -c %Y "$HEALTH_FILE")"
+  cat "$HEALTH_FILE"
+}
+
+ipc() { printf '%s\n' "$1" | timeout 1 socat - UNIX-CONNECT:"$SOCK" 2>/dev/null; }
+
+stop() {
+  if running; then kill "$(<"$PID_FILE")" 2>/dev/null; fi
+  rm -f "$PID_FILE" "$SOCK"
+}
+
+play() {
+  local id=$1 name url
+  [[ $id =~ ^[a-z0-9]{1,32}$ ]] || { echo "bad station id" >&2; exit 2; }
+  name=$(jq -r --arg id "$id" '.[] | select(.id == $id) | .name' "$STATIONS")
+  url=$(jq -r --arg id "$id" '.[] | select(.id == $id) | .url' "$STATIONS")
+  [[ -n $url && $url =~ ^https?:// ]] || { echo "unknown station: $id" >&2; exit 2; }
+  stop
+  setsid -f mpv --no-video --no-terminal --idle=no --cache=yes --demuxer-max-bytes=2MiB \
+    --volume="$volume" --force-media-title="$name" --title="Radio · $name" \
+    --input-ipc-server="$SOCK" -- "$url" >/dev/null 2>&1
+  # setsid -f forks, so find the new mpv by its socket argument.
+  for _ in $(seq 20); do
+    pid=$(pgrep -n -f -- "--input-ipc-server=$SOCK") && break
+    sleep 0.05
+  done
+  [[ -n ${pid:-} ]] && echo "$pid" >"$PID_FILE"
+  last=$id
+  save
+}
+
+case ${1:-status} in
+  status)
+    playing=0 title="" buffering=0
+    if running; then
+      playing=1
+      meta=$(ipc '{"command":["get_property","metadata"]}')
+      title=$(jq -r '.data["icy-title"] // .data["StreamTitle"] // empty' <<<"$meta" 2>/dev/null |
+        tr -d '\000-\037\177' | cut -c1-120)
+      idle=$(ipc '{"command":["get_property","paused-for-cache"]}' | jq -r '.data // false' 2>/dev/null)
+      [[ $idle == true ]] && buffering=1
+      [[ -S $SOCK && -z $meta ]] && buffering=1
+      codec=$(ipc '{"command":["get_property","audio-codec-name"]}' | jq -r '.data // empty' 2>/dev/null | tr -cd 'A-Za-z0-9_-' | cut -c1-16)
+      bitrate=$(ipc '{"command":["get_property","audio-bitrate"]}' | jq -r '.data // empty | floor' 2>/dev/null | tr -cd '0-9')
+      rate=$(ipc '{"command":["get_property","audio-params/samplerate"]}' | jq -r '.data // empty' 2>/dev/null | tr -cd '0-9')
+      cache=$(ipc '{"command":["get_property","demuxer-cache-duration"]}' | jq -r '.data // empty | floor' 2>/dev/null | tr -cd '0-9')
+      [[ -z $codec ]] && buffering=1
+    fi
+    printf 'favs=%s\nmode=%s\nplaying=%s\nstation=%s\nvolume=%s\nbuffering=%s\ncodec=%s\nbitrate=%s\nsamplerate=%s\ncache=%s\ntitle=%s\n' \
+      "$favs" "$mode" "$playing" "$last" "$volume" "$buffering" "${codec:-}" "${bitrate:-}" "${rate:-}" "${cache:-}" "$title"
+    ;;
+  check)
+    # Probe every station in parallel; write id=1|0 lines to the health file.
+    # --if-stale N skips the probe when the last check is younger than N seconds.
+    if [[ ${2:-} == --if-stale && ${3:-} =~ ^[0-9]+$ && -f $HEALTH_FILE ]] &&
+      (($(date +%s) - $(stat -c %Y "$HEALTH_FILE") < $3)); then
+      show_health; exit 0
+    fi
+    exec 9>"$STATE_DIR/check.lock"
+    flock -n 9 || { show_health; exit 0; }
+    tmp=$(mktemp "$STATE_DIR/health.XXXXXX")
+    probe() { timeout 12 ffprobe -v error -rw_timeout 8000000 -show_entries stream=codec_name -of csv=p=0 "$1" 2>/dev/null | grep -q .; }
+    declare -A urls=()
+    while IFS=$'\t' read -r id url; do urls[$id]=$url; done < <(
+      jq -r '.[] | select(.id|test("^[a-z0-9]{1,32}$")) | select(.url|test("^https?://")) | "\(.id)\t\(.url)"' "$STATIONS")
+    # Parallel pass, at most 6 at once: some hosts refuse bursts of connections.
+    for id in "${!urls[@]}"; do
+      while (($(jobs -rp | wc -l) >= 6)); do wait -n; done
+      { if probe "${urls[$id]}"; then echo "$id=1"; else echo "$id=0"; fi; } >>"$tmp" &
+    done
+    wait
+    # Retry failures one at a time before calling a station dead.
+    for id in $(sed -n 's/=0$//p' "$tmp"); do
+      probe "${urls[$id]}" && sed -i "s/^$id=0\$/$id=1/" "$tmp"
+    done
+    sort "$tmp" >"$HEALTH_FILE"; rm -f "$tmp"
+    show_health
+    ;;
+  health) show_health ;;
+  logos)
+    # Logos are the broadcasters' own images, so they are fetched to the
+    # user's cache instead of being shipped in the repository. Only HTTPS,
+    # at most 25 MB (some RTM logos are large animated GIFs), only real PNG/JPEG/GIF/WebP/ICO files, converted to a
+    # small PNG before the panel ever loads them. Failures retry after a day.
+    mkdir -p "$LOGO_DIR"
+    exec 8>"$STATE_DIR/logos.lock"
+    if flock -n 8; then
+      fetch_logo() {
+        local id=$1 url=$2 tmp
+        [[ ${3:-} != --force && -f $LOGO_DIR/$id.png ]] && return 0
+        [[ ${3:-} != --force && -n $(find "$LOGO_DIR/$id.fail" -mmin -1440 2>/dev/null) ]] && return 0
+        tmp=$(mktemp "$LOGO_DIR/.dl.XXXXXX")
+        if curl --proto =https --proto-redir =https -fsL --max-filesize 25000000 -m 60 \
+             -A "Mozilla/5.0 (radio-malaysia for Omarchy)" -o "$tmp" -- "$url" &&
+           [[ $(file -b --mime-type "$tmp") =~ ^image/(png|jpeg|gif|webp|x-icon|vnd.microsoft.icon)$ ]] &&
+           magick "$tmp[0]" -strip -resize 112x56 "png:$LOGO_DIR/.$id.png" 2>/dev/null; then
+          mv -f "$LOGO_DIR/.$id.png" "$LOGO_DIR/$id.png"
+          rm -f "$LOGO_DIR/$id.fail"
+        else
+          rm -f "$LOGO_DIR/.$id.png"
+          touch "$LOGO_DIR/$id.fail"
+        fi
+        rm -f "$tmp"
+      }
+      while IFS=$'\t' read -r id url; do
+        while (($(jobs -rp | wc -l) >= 6)); do wait -n; done
+        fetch_logo "$id" "$url" "${2:-}" &
+      done < <(jq -r '.[] | select(.id|test("^[a-z0-9]{1,32}$")) | select((.logoUrl // "")|test("^https://"))
+                     | "\(.id)\t\(.logoUrl)"' "$STATIONS")
+      wait
+    fi
+    echo "dir=$LOGO_DIR"
+    for f in "$LOGO_DIR"/*.png; do
+      [[ -f $f ]] || continue
+      id=$(basename "$f" .png)
+      [[ $id =~ ^[a-z0-9]{1,32}$ ]] && echo "$id=1"
+    done
+    ;;
+  play) play "${2:-}" ;;
+  stop) stop ;;
+  toggle)
+    if running; then stop
+    elif [[ -n $last ]]; then play "$last"
+    fi
+    ;;
+  fav)
+    id=${2:-}
+    [[ $id =~ ^[a-z0-9]{1,32}$ ]] || { echo "bad station id" >&2; exit 2; }
+    if [[ ,$favs, == *,$id,* ]]; then
+      favs=$(tr ',' '\n' <<<"$favs" | grep -vx -- "$id" | paste -sd, -)
+    else
+      favs=${favs:+$favs,}$id
+    fi
+    save
+    echo "favs=$favs"
+    ;;
+  mode)
+    [[ ${2:-} =~ ^(bars|wave|spectrogram)$ ]] || { echo "mode bars|wave|spectrogram" >&2; exit 2; }
+    mode=$2
+    save
+    ;;
+  volume)
+    v=${2:-}
+    [[ $v =~ ^[0-9]{1,3}$ ]] && ((v <= 100)) || { echo "volume 0-100" >&2; exit 2; }
+    volume=$v
+    save
+    if running; then ipc "{\"command\":[\"set_property\",\"volume\",$volume]}" >/dev/null; fi
+    ;;
+  *) sed -n '2,10p' "$0"; exit 2 ;;
+esac
