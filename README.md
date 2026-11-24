@@ -26,6 +26,11 @@ audio visualizer.
 Left-click the bar icon to open the panel. Right-click it to stop, or to resume
 the last station.
 
+Two widget settings in Omarchy's bar settings (both on by default):
+
+- **Show station name in the bar while playing**
+- **Animate the bar icon as a visualizer while playing**
+
 ## Install
 
 ```bash
@@ -51,12 +56,28 @@ yourself:
 ~/.config/omarchy/plugins/pdoc81.radio-malaysia/bin/radio volume 50
 ```
 
+| Command | What it does |
+| --- | --- |
+| `radio status` | Print the current state as `key=value` lines |
+| `radio play <id>` | Play a station from `stations.json` |
+| `radio stop` | Stop playback |
+| `radio toggle` | Stop, or resume the last station |
+| `radio volume <0-100>` | Set the volume |
+| `radio mode <bars\|wave\|spectrogram>` | Set the visualizer mode |
+| `radio fav <id>` | Add or remove a favourite |
+| `radio check [--if-stale N]` | Check every station; print `id=1` (live) or `id=0` (down) |
+| `radio health` | Print the result of the last check |
+| `radio logos [--force]` | Download missing station logos |
+
 Shell commands you can bind to keys in `~/.config/hypr/bindings.lua`:
 
 ```bash
 omarchy-shell radio-malaysia toggle       # open or close the panel
+omarchy-shell radio-malaysia open         # open the panel
+omarchy-shell radio-malaysia close        # close the panel
 omarchy-shell radio-malaysia openPicker   # open straight into station search
 omarchy-shell radio-malaysia playPause    # stop, or resume the last station
+omarchy-shell radio-malaysia stop         # stop playback
 omarchy-shell radio-malaysia mode wave    # bars | wave | spectrogram
 omarchy-shell radio-malaysia fav hitz     # star or unstar a station
 ```
